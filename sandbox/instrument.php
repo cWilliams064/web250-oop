@@ -1,6 +1,6 @@
 <?php
 
-class instrument {
+class Instrument {
   // Properties (descriptors)
   var $name;
   var $type;
@@ -37,7 +37,7 @@ class instrument {
 //$cello = new instrument("Cello", "Willow", "Cecilio", 2000.00);
 //$cello->displayDetails();
 
-$cello = new instrument;
+$cello = new Instrument;
 
 $cello->name = "Cello";
 $cello->type = "Oak";
