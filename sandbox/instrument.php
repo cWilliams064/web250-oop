@@ -9,8 +9,7 @@ class Instrument {
 
   // Constructor
   /*
-  public function __construct($name, $type, $brand, $price)
-  {
+  public function __construct($name, $type, $brand, $price) {
     $this->name = $name;
     $this->type = $type;
     $this->brand = $brand;
@@ -19,8 +18,7 @@ class Instrument {
   */
 
   // Methods
-  public function displayDetails()
-  {
+  public function displayDetails() {
     echo "Instrument Details<br>";
     echo "Name: " . $this->name . "<br>";
     echo "Type: " . $this->type . "<br>";
