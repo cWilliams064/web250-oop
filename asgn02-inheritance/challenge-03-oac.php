@@ -2,50 +2,70 @@
 
 class Bicycle {
 
-  var $brand;
-  var $model;
-  var $year;
-  var $description;
-  var $weightKg = 0.0;
+  public $brand;
+  public $model;
+  public $year;
+  public $description;
+  private $weightKg = 0.0;
+  protected $wheels = 2;
 
-  function name() {
+  public function name() {
     return $this->brand . " " . $this->model . " (" . $this->year . ")";
   }
 
-  function weight_lbs() {
+  public function weight_lbs() {
     return floatval($this->weightKg) * 2.2046226218;
+    return $weightLbs . " lbs";
   }
 
-  function set_weight_lbs($value) {
+  public function set_weight_lbs($value) {
     $this->weightKg = floatval($value) / 2.2046226218;
   }
 
+  public function set_weight_kg($value) {
+    $this->weightKg = floatval($value);
+  }
+
+  public function weight_kg() {
+    return $this->weightKg . " kg";
+  }
+
+  public function wheel_details() {
+    $wheel_sentence = $this->wheels == 1 ? "1 wheel." : "$this->wheels wheels.";
+    return "It has " . $wheel_sentence;
+  }
+}
+
+class Unicycle extends Bicycle {
+
+  protected $wheels = 1;
 }
 
 $trek = new Bicycle;
 $trek->brand = "Trek";
 $trek->model = "Emonda";
 $trek->year = "2017";
-$trek->description = "Enjoy balanced ride quality, superior handling, and the added benefit of free speed.";
-$trek->weightKg = "1.0";
 
-$cd = new Bicycle;
-$cd->brand = "Cannondale";
-$cd->model = "Synapse";
-$cd->year = "2016";
-$cd->description = "Light and fast. Composed, capable, and easy to ride hard on all kinds of roads.";
-$cd->weightKg = "8.0";
+$uni = new Unicycle;
 
-echo $trek->name() . "<br>";
-echo $trek->weightKg . "<br>";
+echo "Bicycle: " . $trek->wheel_details() . "<br>";
+echo "Unicycle: " . $uni->wheel_details() . "<br>";
+echo "<hr>";
+
+echo "Set weight using kg<br>";
+$trek->set_weight_kg(1);
+echo $trek->weight_kg() . "<br>";
 echo $trek->weight_lbs() . "<br>";
-echo "<br>";
+echo "<hr>";
 
-echo $cd->name() . "<br>";
-echo $cd->weightKg . "<br>";
-echo $cd->weight_lbs() . "<br>";
-echo "<br>";
-
-echo $trek->set_weight_lbs(2);
-echo $trek->weightKg . "<br>";
+echo "Set weight using lbs<br>";
+$trek->set_weight_lbs(2);
+echo $trek->weight_kg() . "<br>";
 echo $trek->weight_lbs() . "<br>";
+echo "<hr>";
+
+echo "Set weight for Unicycle<br>";
+$uni->set_weight_kg(1);
+echo $uni->weight_kg() . "<br>";
+echo $uni->weight_lbs() . "<br>";
+echo "<hr>";
