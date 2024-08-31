@@ -35,24 +35,10 @@ class Mammal extends Animal {
 
   var $hasFur;
 
-  function huntForFood() {
-    if ($this->dietType == 'carnivore') {
-      echo $this->name . "'s hunts for food.<br>";
-    } 
-    elseif ($this->dietType == 'Omnivore') {
-      echo $this->name . "'s can hunt for food.<br>";
-    }
-    else {
-      echo $this->name . "'s does not hunt for food.<br>";
-    }
-  }
-
   function displayDetails() {
     parent::displayDetails();
     echo "Has Fur: " . $this->hasFur . "<br>";
-    echo $this->huntForFood();
   }
-
 }
 
 class Fish extends Animal {

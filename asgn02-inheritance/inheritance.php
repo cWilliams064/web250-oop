@@ -2,13 +2,13 @@
 
 class Animal {
   
-  var $name;
-  var $color;
-  var $species;
-  var $habitat;
-  var $dietType; 
+  public $name;
+  public $color;
+  public $species;
+  public $habitat;
+  public $dietType; 
 
-  function displayDetails() {
+  public function displayDetails() {
     echo "Name: " . $this->name . "<br>";
     echo "Color: " . $this->color . "<br>";
     echo "Species: " . $this->species . "<br>";
@@ -19,52 +19,66 @@ class Animal {
 
 class Bird extends Animal {
 
-  var $canFly;
-  var $wingSpan;
-  var $eggColor;
+  public $canFly;
+  private $wingspanInches;
+  public $eggColor;
 
-  function displayDetails() {
+  public function set_wingspan_inches($value) {
+    $this->wingspanInches = max(0, floatval($value));
+  }
+
+  private function get_wingspan_inches() {
+    return $this->wingspanInches . " in";
+  }
+
+  private function wingspan_to_meters() {
+    return round($this->wingspanInches * 0.0254, 2);
+  }
+
+  private function get_wingspan_meters() {
+    return $this->wingspan_to_meters() . " m";
+  }
+
+  public function displayDetails() {
     parent::displayDetails();
     echo "Can Fly: " . $this->canFly . "<br>";
-    echo "Wing Span: " . $this->wingSpan . " meters<br>";
+    echo "Wingspan in Inches: " . $this->get_wingspan_inches() . "<br>";
+    echo "Wingspan in Meters: " . $this->get_wingspan_meters() . "<br>";
     echo "Egg Color: " . $this->eggColor . "<br>";
   }
 }
 
 class Mammal extends Animal {
 
-  var $hasFur;
+  public $hasFur;
 
-  function huntForFood() {
-    if ($this->dietType == 'carnivore') {
-      echo $this->name . "'s hunts for food.<br>";
-    } 
-    elseif ($this->dietType == 'Omnivore') {
-      echo $this->name . "'s can hunt for food.<br>";
-    }
-    else {
-      echo $this->name . "'s does not hunt for food.<br>";
-    }
-  }
-
-  function displayDetails() {
+  public function displayDetails() {
     parent::displayDetails();
     echo "Has Fur: " . $this->hasFur . "<br>";
-    echo $this->huntForFood();
   }
-
 }
 
 class Fish extends Animal {
-  var $hasGills;
-  var $finCount;
-  var $waterType;
 
-  function swim() {
+  public $hasGills;
+  private $finCount;
+  public $waterType;
+
+  public function set_fin_count($value) {
+    if (!is_int($value) || $value < 0) {
+      trigger_error("Fin count must be a non-negative whole number.");
+      return;
+    }
+    else {
+     $this->finCount = $value;
+    }
+  }
+
+  private function swim() {
     echo $this->name . "'s swim in " . $this->waterType . ".<br>";
   }
 
-  function displayDetails() {
+  public function displayDetails() {
     parent::displayDetails();
     echo "Has Gills: " . $this->hasGills . "<br>";
     echo "Fin Count: " . $this->finCount . "<br>";
@@ -80,7 +94,7 @@ $eagle->species = 'Aquila Nipalensis';
 $eagle->habitat = 'Mountains';
 $eagle->dietType = 'Carnivore';
 $eagle->canFly = 'Yes';
-$eagle->wingSpan = 2.3;
+$eagle->set_wingspan_inches(2.3);
 $eagle->eggColor = 'White';
 
 echo '<h2>Bird Details:</h2>';
@@ -93,11 +107,11 @@ $platypus->name = 'Platypus';
 $platypus->color = 'Brown';
 $platypus->species = 'Ornithorhynchus Anatinus';
 $platypus->habitat = 'Freshwater rivers and lakes';
-$platypus->dietType = 'Omnivore'; // Platypuses are omnivores
+$platypus->dietType = 'Omnivore';
 $platypus->hasFur = 'Yes';
 
 echo '<h2>Mammal Details:</h2>';
-$platypus->displayDetails();
+echo $platypus->displayDetails();
 echo '<br>';
 
 // Fish
@@ -108,8 +122,8 @@ $shark->species = 'Carcharodon Carcharias';
 $shark->habitat = 'Ocean';
 $shark->dietType = 'Carnivore';
 $shark->hasGills = 'Yes';
-$shark->finCount = 5;
+$shark->set_fin_count(5);
 $shark->waterType = 'saltwater';
 
 echo '<h2>Fish Details:</h2>';
-$shark->displayDetails();
+echo $shark->displayDetails();
