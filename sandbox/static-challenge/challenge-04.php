@@ -35,10 +35,10 @@ class Bicycle {
   }
 
   public static function create() {
-    $instanceClass = get_called_class();
-    $instance = new $instanceClass;
+    $class = get_called_class();
+    $newObject = new $class;
     self::$instanceCount++;
-    return $instance;
+    return $newObject;
   }
 
   public static function wheel_details() {
