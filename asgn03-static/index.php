@@ -23,6 +23,7 @@
     echo "<p>The " . $kiwi->name . " " . $kiwi->canFly() . ".</p>";    
 
 ?>
-    </body>
+
+</body>
 </html>
 
