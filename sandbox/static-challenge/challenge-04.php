@@ -36,15 +36,21 @@ class Bicycle {
 
   public static function create() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     $instanceClass = get_called_class();
     $instance = new $instanceClass;
     self::$instanceCount++;
     return $instance;
 =======
+=======
+>>>>>>> dev
     $class = get_called_class();
     $newObject = new $class;
     self::$instanceCount++;
     return $newObject;
+<<<<<<< HEAD
+>>>>>>> dev
+=======
 >>>>>>> dev
   }
 

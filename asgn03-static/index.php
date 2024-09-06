@@ -15,6 +15,7 @@
     echo '<p>The generic song of any bird is "' . $bird->song . '".</p>';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     $fly_catcher = new YellowBelliedFlyCatcher;
     echo '<p>The song of the ' . $fly_catcher->name . ' on breeding grounds is "' . $fly_catcher->song . '".</p>';
 
@@ -23,6 +24,8 @@
     echo "<p>The " . $fly_catcher->name . " " . $fly_catcher->can_fly() . ".</p>";
     echo "<p>The " . $kiwi->name . " " . $kiwi->can_fly() . ".</p>";    
 =======
+=======
+>>>>>>> dev
     $flyCatcher = new YellowBelliedFlyCatcher;
     echo '<p>The song of the ' . $flyCatcher->name . ' on breeding grounds is "' . $flyCatcher->song . '".</p>';
 
@@ -30,6 +33,9 @@
     $kiwi->flying = "no";
     echo "<p>The " . $flyCatcher->name . " " . $flyCatcher->canFly() . ".</p>";
     echo "<p>The " . $kiwi->name . " " . $kiwi->canFly() . ".</p>";    
+<<<<<<< HEAD
+>>>>>>> dev
+=======
 >>>>>>> dev
 
 ?>
