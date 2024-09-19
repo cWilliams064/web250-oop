@@ -22,7 +22,7 @@ class Bicycle {
     2 => 'Decent',
     3 => 'Good',
     4 => 'Great',
-    5 => 'Like New',
+    5 => 'Like New'
   ];
 
   public function __construct($args=[]) {
