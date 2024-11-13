@@ -13,6 +13,7 @@
   define("WWW_ROOT", $doc_root);
  
   require_once('functions.php');
+  require_once('status-error-functions.php');
   require_once('db-credentials.php');
   require_once('database-functions.php');
   
