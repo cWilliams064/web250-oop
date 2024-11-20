@@ -21,27 +21,27 @@ $bird = Bird::find_by_id($id);
     <div class="attributes">
       <dl>
         <dt>Habitat:</dt>
-        <dd><?php echo h($bird->habitat); ?></dd>
+        <dd><?= h($bird->habitat); ?></dd>
       </dl>
       <dl>
         <dt>Food:</dt>
-        <dd><?php echo h($bird->food); ?></dd>
+        <dd><?= h($bird->food); ?></dd>
       </dl>
       <dl>
         <dt>Nest Placement:</dt>
-        <dd><?php echo h($bird->nestPlacement); ?></dd>
+        <dd><?= h($bird->nestPlacement); ?></dd>
       </dl>
       <dl>
         <dt>Behavior:</dt>
-        <dd><?php echo h($bird->behavior); ?></dd>
+        <dd><?= h($bird->behavior); ?></dd>
       </dl>
       <dl>
         <dt>Conservation:</dt>
-        <dd><?php echo h($bird->conservation()); ?></dd>
+        <dd><?= h($bird->conservation()); ?></dd>
       </dl>
       <dl>
         <dt>Backyard Tips:</dt>
-        <dd><?php echo h($bird->backyardTips); ?></dd>
+        <dd><?= h($bird->backyardTips); ?></dd>
       </dl>
     </div>
 

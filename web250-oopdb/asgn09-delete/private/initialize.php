@@ -16,6 +16,7 @@
   require_once('status-error-functions.php');
   require_once('db-credentials.php');
   require_once('database-functions.php');
+  require_once('validation-functions.php');
   
   // Autoload class definitions
   function my_autoload($class) {

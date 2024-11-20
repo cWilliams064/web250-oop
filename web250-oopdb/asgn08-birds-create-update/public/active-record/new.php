@@ -16,8 +16,8 @@ if(is_post_request()) {
 
   $bird = new Bird($args);
   $result = $bird->save();
-  
-  if($result === true) {
+
+  if($result == true) {
     $new_id = $bird->id;
     $_SESSION['message'] = 'The bird was created successfully.';
     redirect_to(url_for('./active-record/show.php?id=' . $new_id));
@@ -48,7 +48,7 @@ if(is_post_request()) {
       <?php include('form_fields.php'); ?>
       
       <div id="operations">
-        <input type="submit" value="Create Bird" />
+        <input type="submit" value="Create Bird">
       </div>
     </form>
 

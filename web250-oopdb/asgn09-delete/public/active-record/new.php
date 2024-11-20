@@ -5,19 +5,11 @@ require_once('../../private/initialize.php');
 if(is_post_request()) {
 
   // Create record using post parameters
-  $args = [];
-  $args['commonName'] = $_POST['commonName'] ?? NULL;
-  $args['habitat'] = $_POST['habitat'] ?? NULL;
-  $args['food'] = $_POST['food'] ?? NULL;
-  $args['nestPlacement'] = $_POST['nestPlacement'] ?? NULL;
-  $args['behavior'] = $_POST['behavior'] ?? NULL;
-  $args['conservationId'] = $_POST['conservationId'] ?? NULL;
-  $args['backyardTips'] = $_POST['backyardTips'] ?? NULL;
-
+  $args = $_POST['bird'];
   $bird = new Bird($args);
   $result = $bird->save();
-  
-  if($result === true) {
+
+  if($result == true) {
     $new_id = $bird->id;
     $_SESSION['message'] = 'The bird was created successfully.';
     redirect_to(url_for('./active-record/show.php?id=' . $new_id));
@@ -41,14 +33,14 @@ if(is_post_request()) {
   <div class="bird new">
     <h1>Create Bird</h1>
 
-    <?php // echo display_errors($errors); ?>
+    <?php echo display_errors($bird->errors); ?>
 
     <form action="<?php echo url_for('./active-record/new.php'); ?>" method="post">
 
       <?php include('form_fields.php'); ?>
       
       <div id="operations">
-        <input type="submit" value="Create Bird" />
+        <input type="submit" value="Create Bird">
       </div>
     </form>
 

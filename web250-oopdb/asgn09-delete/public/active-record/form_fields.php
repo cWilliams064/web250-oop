@@ -8,33 +8,33 @@ if(!isset($bird)) {
 
 <dl>
   <dt>Common Name:</dt>
-  <dd><input type="text" name="commonName" value="<?php echo h($bird->commonName); ?>" /></dd>
+  <dd><input type="text" name="bird[commonName]" value="<?php echo h($bird->commonName); ?>" /></dd>
 </dl>
 
 <dl>
   <dt>Habitat:</dt>
-  <dd><input type="text" name="habitat" value="<?php echo h($bird->habitat); ?>" /></dd>
+  <dd><input type="text" name="bird[habitat]" value="<?php echo h($bird->habitat); ?>" /></dd>
 </dl>
 
 <dl>
   <dt>Food:</dt>
-  <dd><input type="text" name="food" value="<?php echo h($bird->food); ?>"></dd>
+  <dd><input type="text" name="bird[food]" value="<?php echo h($bird->food); ?>"></dd>
 </dl>
 
 <dl>
   <dt>Nest Placement:</dt>
-  <dd><input type="text" name="nestPlacement" value="<?php echo h($bird->nestPlacement); ?>"></dd>
+  <dd><input type="text" name="bird[nestPlacement]" value="<?php echo h($bird->nestPlacement); ?>"></dd>
 </dl>
 
 <dl>
   <dt>Behavior:</dt>
-  <dd><input type="text" name="behavior" value="<?php echo h($bird->behavior); ?>"></dd>
+  <dd><input type="text" name="bird[behavior]" value="<?php echo h($bird->behavior); ?>"></dd>
 </dl>
 
 <dl>
   <dt>Conservation Status:</dt>
   <dd>
-    <select name="conservationId">
+    <select name="bird[conservationId]">
       <option value=""></option>
     <?php foreach(Bird::CONSERVATION_OPTIONS as $id => $conservation) { ?>
       <option value="<?php echo $id; ?>" <?php if ($bird->conservationId == $id) { echo 'selected'; }; ?>><?php echo $conservation; ?></option>
@@ -45,5 +45,5 @@ if(!isset($bird)) {
 
 <dl>
   <dt>Backyard Tips:</dt>
-  <dd><input type="text" name="backyardTips" value="<?php echo h($bird->backyardTips); ?>" /></dd>
+  <dd><input type="text" name="bird[backyardTips]" value="<?php echo h($bird->backyardTips); ?>" /></dd>
 </dl>
