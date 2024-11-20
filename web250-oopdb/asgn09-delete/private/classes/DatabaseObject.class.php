@@ -1,10 +1,11 @@
-<?php
+<?php 
 
-class Bird {
+class DatabaseObject {
 
-  // --- Start of Active Record Code ---
   static protected $database;
-  static protected $db_columns = ['id', 'commonName', 'habitat', 'food', 'nestPlacement', 'behavior', 'conservationId', 'backyardTips'];
+  static protected $table_name = "";
+  static protected $columns = [];
+  public $errors = [];
 
   static public function set_database($database) {
     self::$database = $database;
@@ -18,7 +19,7 @@ class Bird {
     
     $object_array = [];
     while($record = $result->fetch_assoc()) {
-      $object_array[] = self::instantiate($record);
+      $object_array[] = static::instantiate($record);
     }
     $result->free();
     
@@ -26,14 +27,14 @@ class Bird {
   }
 
   static public function find_all() {
-    $sql = "SELECT * FROM birds";
-    return self::find_by_sql($sql);
+    $sql = "SELECT * FROM " . static::$table_name;
+    return static::find_by_sql($sql);
   }
 
   static public function find_by_id($id) {
-    $sql = "SELECT * FROM birds ";
-    $sql .= "WHERE id='" . self::$database->escape_string($id) . "'";
-    $obj_array = self::find_by_sql($sql);
+    $sql = "SELECT * FROM " . static::$table_name;
+    $sql .= " WHERE id='" . self::$database->escape_string($id) . "'";
+    $obj_array = static::find_by_sql($sql);
     if(!empty($obj_array)) {
       return array_shift($obj_array);
     }
@@ -43,7 +44,7 @@ class Bird {
   }
   
   static protected function instantiate($record) {
-    $object = new self;
+    $object = new static;
 
     foreach($record as $property => $value) {
       if(property_exists($object, $property)) {
@@ -53,9 +54,17 @@ class Bird {
     return $object;
   }
 
+  protected function validate() {
+    $this->errors = [];
+    return $this->errors;
+  }
+
   protected function create() {
+    $this->validate();
+    if(!empty($this->errors)) {return false; }
+
     $attributes = $this->sanitized_attributes();
-    $sql = "INSERT INTO birds (";
+    $sql = "INSERT INTO " . static::$table_name . " (";
     $sql .= join(', ', array_keys($attributes));
     $sql .= ") VALUES ('";
     $sql .= join("', '", array_values($attributes));
@@ -69,14 +78,25 @@ class Bird {
   }
 
   protected function update() {
+    $this->validate();
+    if(!empty($this->errors)) {return false; }
+
     $attributes = $this->sanitized_attributes();
     $attribute_pairs = [];
     foreach($attributes as $key => $value) {
       $attribute_pairs[] = "{$key}='{$value}'";
     }
-    $sql = "UPDATE birds SET ";
+    $sql = "UPDATE " . static::$table_name . " SET ";
     $sql .= join(', ', $attribute_pairs);
     $sql .= " WHERE id='" . self::$database->escape_string($this->id) . "'";
+    $sql .= "LIMIT 1";
+    $result = self::$database->query($sql);
+    return $result;
+  }
+
+  public function delete() {
+    $sql = "DELETE FROM " . static::$table_name;
+    $sql .= " WHERE id='" . self::$database->escape_string($this->id) . "' ";
     $sql .= "LIMIT 1";
     $result = self::$database->query($sql);
     return $result;
@@ -101,7 +121,7 @@ class Bird {
 
   public function attributes() {
     $attributes = [];
-    foreach(self::$db_columns as $column) {
+    foreach(static::$db_columns as $column) {
       if ($column === 'id') { continue; }
       $attributes[$column] = $this->$column;
     }
@@ -116,48 +136,4 @@ class Bird {
     return $sanitized;
   }
 
-  // --- End of Active Record Code ---
-
-  public $id;
-  public $commonName;
-  public $habitat;
-  public $food;
-  public $nestPlacement;
-  public $behavior;
-  public $conservationId;
-  public $backyardTips;
- 
-  public const CONSERVATION_OPTIONS = [
-    1 => 'Low Concern',
-    2 => 'Moderate concern',
-    3 => 'Extreme concern',
-    4 => 'Extinct'
-  ];
-
-  public function __construct($args=[]) {
-    $this->id = $args['id'] ?? '';
-    $this->commonName = $args['commonName'] ?? '';
-    $this->habitat = $args['habitat'] ?? '';
-    $this->food = $args['food'] ?? '';
-    $this->nestPlacement = $args['nestPlacement'] ?? '';
-    $this->behavior = $args['behavior'] ?? '';
-    $this->conservationId = $args['conservationId'] ?? 1;
-    $this->backyardTips = $args['backyardTips'] ?? '';
-  }
-
-  public function name() {
-    return "{$this->commonName}";
-  }
-
-  public function conservation() {
-    if($this->conservationId > 0) {
-      return self::CONSERVATION_OPTIONS[$this->conservationId];
-    }
-    else {
-      return "Unknown";
-    }
-  }
-
 }
-
-?>
