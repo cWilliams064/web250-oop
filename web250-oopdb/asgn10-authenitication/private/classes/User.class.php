@@ -3,7 +3,7 @@
 class User extends DatabaseObject {
   
   static protected $table_name = 'users';
-  static protected $db_columns = ['id', 'firstName', 'lastName', 'email', 'username', 'userLevel'];
+  static protected $db_columns = ['id', 'firstName', 'lastName', 'email', 'username', 'userLevel', 'hashedPassword'];
 
   public $id;
   public $firstName;
@@ -11,6 +11,9 @@ class User extends DatabaseObject {
   public $email;
   public $username;
   public $userLevel;
+  protected $hashedPassword;
+  public $password;
+  public $confirmPassword;
 
   public function __construct($args=[]) {
     $this->id = $args['id'] ?? '';
@@ -19,6 +22,8 @@ class User extends DatabaseObject {
     $this->email = $args['email'] ?? '';
     $this->username = $args['username'] ?? '';
     $this->userLevel = $args['userLevel'] ?? '';
+    $this->password = $args['password'] ?? '';
+    $this->confirmPassword = $args['confirmPassword'] ?? '';
   }
 
   public function fullName() {

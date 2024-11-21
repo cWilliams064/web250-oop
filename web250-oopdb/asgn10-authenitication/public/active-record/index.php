@@ -12,7 +12,7 @@ $birds = Bird::find_all();
   <div class="bicycles listing">
     <h1>Birds</h1>
 
-    <div class="actions">
+    <div class="actions" style="padding-bottom: 20px;">
       <a class="action" href="<?php echo url_for('./active-record/new.php'); ?>">Add Bird</a>
     </div>
 

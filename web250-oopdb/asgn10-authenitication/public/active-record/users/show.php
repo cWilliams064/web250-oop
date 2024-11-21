@@ -1,4 +1,4 @@
-<?php require_once('../../../initialize.php'); ?>
+<?php require_once('../../../private/initialize.php'); ?>
 
 <?php
 
@@ -8,36 +8,36 @@ $user = User::find_by_id($id);
 
 ?>
 
-<?php $page_title = 'Show Admin: ' . h($user->fullName()); ?>
+<?php $page_title = 'Show User: ' . h($user->fullName()); ?>
 
 <div id="content">
 
-  <a class="back-link" href="<?php echo url_for('./active-records/users/index.php'); ?>">&laquo; Back to List</a>
+  <a class="back-link" href="<?php echo url_for('../public/active-record/users/index.php'); ?>">&laquo; Back to List</a>
 
-  <div class="admin show">
+  <div class="user show">
 
-    <h1>Admin: <?php echo h($user->fullName()); ?></h1>
+    <h1>User: <?= h($user->fullName()); ?></h1>
 
     <div class="attributes">
       <dl>
-        <dt>First name</dt>
-        <dd><?php echo h($user->firstName); ?></dd>
+        <dt>First name:</dt>
+        <dd><?= h($user->firstName); ?></dd>
       </dl>
       <dl>
-        <dt>Last name</dt>
-        <dd><?php echo h($user->lastName); ?></dd>
+        <dt>Last name:</dt>
+        <dd><?= h($user->lastName); ?></dd>
       </dl>
       <dl>
-        <dt>Email</dt>
-        <dd><?php echo h($user->email); ?></dd>
+        <dt>Email:</dt>
+        <dd><?= h($user->email); ?></dd>
       </dl>
       <dl>
-        <dt>Username</dt>
-        <dd><?php echo h($user->username); ?></dd>
+        <dt>Username:</dt>
+        <dd><?= h($user->username); ?></dd>
       </dl>
       <dl>
-        <dt>User Level</dt>
-        <dd><?php echo h($user->userLevel); ?></dd>
+        <dt>User Level:</dt>
+        <dd><?php if(empty($user->userLevel)) { echo "User Level has not been set."; } else { h($user->userLevel); } ?></dd>
       </dl>
     </div>
 
