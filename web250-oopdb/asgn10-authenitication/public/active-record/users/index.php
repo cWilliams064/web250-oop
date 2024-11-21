@@ -36,7 +36,7 @@ $users = User::find_all();
           <td><?= h($user->lastName); ?></td>
           <td><?= h($user->email); ?></td>
           <td><?= h($user->username); ?></td>
-          <td><?= h($user->userLevel); ?></td>
+          <td><?= h($user->user_level()); ?></td>
           <td><a class="action" href="<?= url_for('./active-record/users/show.php?id=' . h(u($user->id))); ?>">View</a></td>
           <td><a class="action" href="<?= url_for('./active-record/users/edit.php?id=' . h(u($user->id))); ?>">Edit</a></td>
           <td><a class="action" href="<?= url_for('./active-record/users/delete.php?id=' . h(u($user->id))); ?>">Delete</a></td>

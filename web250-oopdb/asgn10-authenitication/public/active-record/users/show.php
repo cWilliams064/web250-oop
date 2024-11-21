@@ -35,9 +35,9 @@ $user = User::find_by_id($id);
         <dt>Username:</dt>
         <dd><?= h($user->username); ?></dd>
       </dl>
-      <dl>
+      <dl>  
         <dt>User Level:</dt>
-        <dd><?php if(empty($user->userLevel)) { echo "User Level has not been set."; } else { h($user->userLevel); } ?></dd>
+        <dd><?php if(empty($user->userLevel)) { echo "User Level has not been set."; } else { echo User::USER_LEVEL_OPTIONS[$user->userLevel]; } ?></dd>
       </dl>
     </div>
 
