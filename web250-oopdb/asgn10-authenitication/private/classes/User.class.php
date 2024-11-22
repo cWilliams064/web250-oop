@@ -49,6 +49,10 @@ class User extends DatabaseObject {
     $this->hashedPassword = password_hash($this->password, PASSWORD_BCRYPT);
   }
 
+  public function verify_password($password) {
+    return password_verify($password, $this->hashedPassword);
+  }
+
   protected function create() {
     $this->set_hashed_password();
     return parent::create();

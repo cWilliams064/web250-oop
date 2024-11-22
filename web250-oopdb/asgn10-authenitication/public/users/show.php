@@ -1,18 +1,19 @@
-<?php require_once('../../../private/initialize.php'); ?>
+<?php 
 
-<?php
+require_once('../../private/initialize.php');
+require_login();
 
 $id = $_GET['id'] ?? '1'; // PHP > 7.0
-
 $user = User::find_by_id($id);
 
 ?>
 
 <?php $page_title = 'Show User: ' . h($user->fullName()); ?>
+<?php include(SHARED_PATH . '/user-header.php'); ?>
 
 <div id="content">
 
-  <a class="back-link" href="<?php echo url_for('../public/active-record/users/index.php'); ?>">&laquo; Back to List</a>
+  <a class="back-link" href="<?php echo url_for('../public/users/index.php'); ?>">&laquo; Back to List</a>
 
   <div class="user show">
 
@@ -44,3 +45,5 @@ $user = User::find_by_id($id);
   </div>
 
 </div>
+
+<?php include(SHARED_PATH . '/user-footer.php'); ?>

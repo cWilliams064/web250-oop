@@ -1,19 +1,17 @@
-<?php require_once('../../../private/initialize.php'); ?>
+<?php require_once('../../private/initialize.php'); ?>
 
-<?php
-
-$users = User::find_all();
-  
-?>
+<?php require_login(); ?>
+<?php $users = User::find_all(); ?>
 
 <?php $page_title = 'Users'; ?>
+<?php include(SHARED_PATH . '/user-header.php'); ?>
 
 <div id="content">
   <div class="users listing">
     <h1>Users</h1>
 
     <div class="actions" style="padding-bottom: 20px;">
-      <a class="action" href="<?php echo url_for('active-record/users/new.php'); ?>">Add User</a>
+      <a class="action" href="<?php echo url_for('../public/users/new.php'); ?>">Add User</a>
     </div>
 
   	<table class="list" border=1>
@@ -37,9 +35,9 @@ $users = User::find_all();
           <td><?= h($user->email); ?></td>
           <td><?= h($user->username); ?></td>
           <td><?= h($user->user_level()); ?></td>
-          <td><a class="action" href="<?= url_for('./active-record/users/show.php?id=' . h(u($user->id))); ?>">View</a></td>
-          <td><a class="action" href="<?= url_for('./active-record/users/edit.php?id=' . h(u($user->id))); ?>">Edit</a></td>
-          <td><a class="action" href="<?= url_for('./active-record/users/delete.php?id=' . h(u($user->id))); ?>">Delete</a></td>
+          <td><a class="action" href="<?= url_for('../public/users/show.php?id=' . h(u($user->id))); ?>">View</a></td>
+          <td><a class="action" href="<?= url_for('../public/users/edit.php?id=' . h(u($user->id))); ?>">Edit</a></td>
+          <td><a class="action" href="<?= url_for('../public/users/delete.php?id=' . h(u($user->id))); ?>">Delete</a></td>
     	  </tr>
       <?php } ?>
   	</table>
@@ -47,3 +45,5 @@ $users = User::find_all();
   </div>
 
 </div>
+
+<?php include(SHARED_PATH . '/user-footer.php'); ?>

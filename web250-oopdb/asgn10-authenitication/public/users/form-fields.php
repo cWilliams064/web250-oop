@@ -2,7 +2,7 @@
 // prevents this code from being loaded directly in the browser
 // or without first setting the necessary object
 if(!isset($user)) {
-  redirect_to(url_for('../public/active-record/users/index.php'));
+  redirect_to(url_for('../public/users/index.php'));
 }
 ?>
 
