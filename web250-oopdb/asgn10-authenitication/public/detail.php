@@ -1,24 +1,35 @@
-<?php require_once('../../private/initialize.php'); ?>
+<?php require_once('../private/initialize.php'); ?>
 
 <?php
 
-$id = $_GET['id'] ?? '1'; // PHP > 7.0
+  // Get requested ID
 
-$bird = Bird::find_by_id($id);
+  $id = $_GET['id'] ?? false;
+
+  if(!$id) {
+    redirect_to('bird.php');
+  }
+
+  // Find bicycle using ID
+
+  $bird = Bird::find_by_id($id);
 
 ?>
 
-<?php $page_title = 'Show Bird: ' . h($bird->name()); ?>
+<?php $page_title = 'Detail: ' . $bird->name(); ?>
+<?php include(SHARED_PATH . '/public_header.php'); ?>
 
-<div id="content">
+<div id="main">
 
-  <a class="back-link" href="<?php echo url_for('./active-record/index.php'); ?>">&laquo; Back to List</a>
+  <a href="birds.php">Back to Inventory</a>
 
-  <div class="bird show">
+  <div id="page">
 
-    <h1>Bird: <?php echo h($bird->commonName); ?></h1>
-
-    <div class="attributes">
+    <div class="detail">
+      <dl>
+        <dt>Common Name:</dt>
+        <dd><?= h($bird->commonName); ?></dd>
+      </dl>
       <dl>
         <dt>Habitat:</dt>
         <dd><?= h($bird->habitat); ?></dd>
@@ -48,3 +59,5 @@ $bird = Bird::find_by_id($id);
   </div>
 
 </div>
+
+<?php include(SHARED_PATH . '/public_footer.php'); ?>
