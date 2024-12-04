@@ -13,7 +13,7 @@ $birds = Bird::find_all();
     <h1>Birds</h1>
 
     <div class="actions" style="padding-bottom: 20px;">
-      <a class="action" href="<?php echo url_for('./active-record/new.php'); ?>">Add Bird</a>
+      <a class="action" href="<?php echo url_for('./birds/new.php'); ?>">Add Bird</a>
     </div>
 
   	<table class="list" border="1">
@@ -39,9 +39,9 @@ $birds = Bird::find_all();
           <td><?= h($bird->behavior); ?></td>
           <td><?= h($bird->conservation()); ?></td>
           <td><?= h($bird->backyardTips); ?></td>
-          <td><a class="action" href="<?= url_for('active-record/show.php?id=' . h(u($bird->id))); ?>">View</a></td>
-          <td><a class="action" href="<?= url_for('active-record/edit.php?id=' . h(u($bird->id))); ?>">Edit</a></td>
-          <td><a class="action" href="<?= url_for('active-record/delete.php?id=' . h(u($bird->id))); ?>">Delete</a></td>
+          <td><a class="action" href="<?= url_for('birds/show.php?id=' . h(u($bird->id))); ?>">View</a></td>
+          <td><a class="action" href="<?= url_for('birds/edit.php?id=' . h(u($bird->id))); ?>">Edit</a></td>
+          <td><a class="action" href="<?= url_for('birds/delete.php?id=' . h(u($bird->id))); ?>">Delete</a></td>
     	  </tr>
       <?php } ?>
   	</table>
