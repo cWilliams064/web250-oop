@@ -17,8 +17,8 @@ class User extends DatabaseObject {
   protected $passwordRequired = true;
 
   public const USER_LEVEL_OPTIONS = [
-    1 => 'Admin',
-    2 => 'Member'
+    'a' => 'Admin',
+    'm' => 'Member'
   ];
 
   public function user_level() {

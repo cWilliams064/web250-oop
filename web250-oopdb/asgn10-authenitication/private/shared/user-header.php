@@ -1,19 +1,19 @@
 <?php
-  if(!isset($page_title)) { $page_title = 'Staff Area'; }
+  if(!isset($page_title)) { $page_title = 'User Area'; }
 ?>
 
 <!doctype html>
 
 <html lang="en">
   <head>
-  <title>WNC Birds <?php if(isset($page_title)) { echo '- ' . h($page_title); } ?></title>
-  <meta charset="utf-8">    <meta charset="utf-8">
+  <title><?php if(isset($page_title)) {echo h($page_title);} ?></title>
+  <meta charset="utf-8">
   <link rel="stylesheet" media="all" href="<?php echo url_for('/css/user.css'); ?>">
   </head>
 
   <body>
     <header>
-      <h1>WNC Birds Staff Area</h1>
+      <h1>WNC Birds User Area</h1>
     </header>
 
     <navigation>
