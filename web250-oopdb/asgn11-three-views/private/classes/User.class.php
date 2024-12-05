@@ -22,7 +22,7 @@ class User extends DatabaseObject {
   ];
 
   public function user_level() {
-    if($this->userLevel > 0) {
+    if($this->userLevel === 'a' || $this->userLevel === 'm') {
       return self::USER_LEVEL_OPTIONS[$this->userLevel];
     }
     else {
@@ -36,7 +36,7 @@ class User extends DatabaseObject {
     $this->lastName = $args['lastName'] ?? '';
     $this->email = $args['email'] ?? '';
     $this->username = $args['username'] ?? '';
-    $this->userLevel = $args['userLevel'] ?? 2;
+    $this->userLevel = $args['userLevel'] ?? 'm';
     $this->password = $args['password'] ?? '';
     $this->confirmPassword = $args['confirmPassword'] ?? '';
   }

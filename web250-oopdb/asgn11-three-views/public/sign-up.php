@@ -1,7 +1,6 @@
 <?php
 
-require_once('../../private/initialize.php');
-require_admin();
+require_once('../private/initialize.php');
 
 if(is_post_request()) {
 
@@ -12,13 +11,14 @@ if(is_post_request()) {
 
   if($result === true) {
     $new_id = $user->id;
-    $session->message('The user was created successfully.');
-    redirect_to(url_for('../public/users/show.php?id=' . $new_id));
+    $session->login($user);
+    $session->message('The user was created and logged in successfully.');
+    redirect_to(url_for('/birds/index.php'));
   } else {
     // show errors
   }
-
-} else {
+} 
+else {
   // display the form
   $user = new User;
 }
@@ -30,16 +30,16 @@ if(is_post_request()) {
 
 <div id="content">
 
-  <a class="back-link" href="<?php echo url_for('../public/users/index.php'); ?>">&laquo; Back to List</a>
+  <a class="back-link" href="<?php echo url_for('index.php'); ?>">&laquo; Back to List</a>
 
   <div class="user new">
     <h1>Create User</h1>
 
     <?php echo display_errors($user->errors); ?>
 
-    <form action="<?php echo url_for('../public/users/new.php'); ?>" method="post">
+    <form action="<?php echo url_for('/sign-up.php'); ?>" method="post">
 
-      <?php include('form-fields.php'); ?>
+      <?php include('users/form-fields.php'); ?>
 
       <div id="operations">
         <input type="submit" value="Create User" />

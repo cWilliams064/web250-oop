@@ -1,6 +1,10 @@
-<?php require_once('../../private/initialize.php'); ?>
+<?php 
 
-<?php require_login(); ?>
+require_once('../../private/initialize.php'); 
+require_admin();
+
+?>
+
 <?php $users = User::find_all(); ?>
 
 <?php $page_title = 'Users'; ?>
