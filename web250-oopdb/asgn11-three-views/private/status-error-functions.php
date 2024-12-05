@@ -4,7 +4,18 @@ function require_login() {
   global $session;
   
   if(!$session->is_logged_in()) {
-    redirect_to(url_for('/users/login.php'));
+    redirect_to(url_for('/login.php'));
+  }
+  else {
+  
+  }
+}
+
+function require_admin() {
+  global $session;
+  
+  if(!$session->is_admin()) {
+    redirect_to(url_for('/login.php'));
   }
   else {
   

@@ -1,17 +1,11 @@
-html {
-  height: 100%;
-  width: 100%;
-}
 
 body {
-  height: 980px;
-  width: 100%;
+  max-width: 100%;
   margin: 0;
   padding: 0;
 }
 
 header {
-  width: 980px;
   height: 40px;
   margin: 0 0 10px 0;
   padding: 0;
@@ -28,14 +22,12 @@ header h1 {
 }
 
 navigation {
-  width: 980px;
   margin: 0;
   padding: 0;
   text-align: center;
 }
 
 navigation ul {
-  width: 980px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -47,13 +39,12 @@ navigation ul li {
 }
 
 #content {
-  width: 920px;
-  min-height: 500px;
+  height: auto;
   padding: 0 30px;
+  margin-bottom: 60px;
 }
 
 footer {
-  width: 940px;
   height: 20px;
   margin: 0 0 10px 0;
   padding: 10px 20px;
@@ -81,13 +72,22 @@ table.list {
 
 table.list tr td {
   border: 1px solid #999999;
+  padding: 5px;
 }
 
 table.list tr th {
-  border: 1px solid #0B61A5;
+  border: 1px solid #333;
   background: #0B61A5;
   color: white;
+}
+
+table td:nth-child(7) {
   text-align: left;
+}
+
+th,
+tr {
+  text-align: center;
 }
 
 /* Forms */

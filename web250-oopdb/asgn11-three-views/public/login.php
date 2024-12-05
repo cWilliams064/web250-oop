@@ -40,6 +40,9 @@ if(is_post_request()) {
 <?php include(SHARED_PATH . '/user-header.php'); ?>
 
 <div id="content">
+
+  <a class="back-link" href="<?php echo url_for('/index.php'); ?>">&laquo; Back to List</a>
+
   <h1>Log in</h1>
 
   <?php echo display_errors($errors); ?>

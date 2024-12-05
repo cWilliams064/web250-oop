@@ -2,7 +2,7 @@
 // prevents this code from being loaded directly in the browser
 // or without first setting the necessary object
 if(!isset($user)) {
-  redirect_to(url_for('../public/users/index.php'));
+  redirect_to(url_for('../public/index.php'));
 }
 ?>
 
@@ -26,6 +26,7 @@ if(!isset($user)) {
   <dd><input type="text" name="user[username]" value="<?php echo h($user->username); ?>" /></dd>
 </dl>
 
+<?php if ($session->is_admin()): ?>
 <dl>
   <dt>User Level:</dt>
   <dd>
@@ -38,6 +39,7 @@ if(!isset($user)) {
     </select>
   </dd>
 </dl>
+<?php endif; ?>
 
 <dl>
   <dt>Password</dt>

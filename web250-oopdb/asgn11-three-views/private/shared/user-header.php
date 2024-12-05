@@ -19,9 +19,12 @@
     <navigation>
       <ul>
         <?php if($session->is_logged_in()) { ?>
-          <li>User: <?php echo $session->username; ?></li>
-          <li><a href="<?php echo url_for('/users/index.php'); ?>">Home</a></li>
-          <li><a href="<?php echo url_for('/users/logout.php'); ?>">Logout</a></li>
+          <li>User: <?= $session->username; ?></li>
+          <?php if($session->is_admin()) { ?>
+          <li><a href="<?= url_for('/users/index.php'); ?>">Users</a></li>
+          <?php } ?>
+          <li><a href="<?= url_for('/birds/index.php'); ?>">Birds</a></li>
+          <li><a href="<?= url_for('../public/logout.php'); ?>">Logout</a></li>
         <?php } ?>
       </ul>
     </navigation>

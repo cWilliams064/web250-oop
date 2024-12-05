@@ -13,7 +13,7 @@ if ($bird == false) {
 
 if(is_post_request()) {
   $result = $bird->delete();
-  $_SESSION['message'] = 'The bicycle was deleted successfully.';
+  $_SESSION['message'] = 'The bird was deleted successfully.';
   redirect_to(url_for('./active-record/index.php'));
 } else {
   // Display form
@@ -21,7 +21,7 @@ if(is_post_request()) {
 
 ?>
 
-<?php $page_title = 'Delete Bicycle'; ?>
+<?php $page_title = 'Delete Bird'; ?>
 
 <div id="content">
 

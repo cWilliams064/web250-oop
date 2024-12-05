@@ -28,6 +28,15 @@ class Session {
     return isset($this->userId) && $this->last_login_is_recent(); 
   }
 
+  public function is_admin() {
+    if (!$this->is_logged_in()) {
+      return false;
+    }
+
+    $current_user = User::find_by_id($this->userId);
+    return $current_user && $current_user->userLevel === 'a';
+  }
+
   public function logout() {
     unset($_SESSION['userId']);
     unset($_SESSION['username']);

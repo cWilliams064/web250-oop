@@ -1,12 +1,13 @@
-<?php require_once('../../private/initialize.php'); ?>
+<?php 
 
-<?php
-  
-// Find all bicycles;
+require_once('../../private/initialize.php');
+require_login();
 $birds = Bird::find_all();
   
 ?>
+
 <?php $page_title = 'Birds'; ?>
+<?php include(SHARED_PATH . '/user-header.php'); ?>
 
 <div id="content">
   <div class="bicycles listing">
